@@ -12,10 +12,11 @@
 	<li>Faker</li>
 	<li>Factory Girl</li>
 </ul>
-
+<br>
+ 
 To Run:
-`$ git clone <url-remote-github-repository.git>`
-`$ cd <folder-name>`
-`yarn add ` or `npm install`
+`$ git clone <url-remote-github-repository.git>` <br>
+`$ cd <folder-name>` <br>
+`yarn add ` or `npm install` <br> <br>
 
 and then, go to `package.json` to see the scripts runner.
