@@ -5,12 +5,17 @@
   "repository": "https://github.com/ymotse/auth-tdd.git",
   "author": "Yitshhaq Fukushima <ymotse@gmail.com>",
   "license": "MIT",
+  "scripts" : {
+      "start": "node src/server.js",
+      "dev": "nodemon src/server.js --ignore __tests__"
+  },
   "dependencies": {
     "express": "^4.17.1",
     "pg": "^8.3.3",
     "sequelize": "^6.3.5"
   },
   "devDependencies": {
+    "nodemon": "^2.0.4",
     "sequelize-cli": "^6.2.0"
   }
 }
