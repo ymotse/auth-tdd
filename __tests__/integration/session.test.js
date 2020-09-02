@@ -11,11 +11,28 @@ describe('Authentication', () => {
         await truncate()
     })
     
-    it('should receive JWT token when authenticated with valid credentials', async () => {
+    it('should authenticate with valid credentials', async () => {
         const user = await User.create({ 
             name: 'Yitshhaq', 
             email: 'ymotse@gmail.com', 
-            password_hash: '123123' 
+            password: '123123' 
+        })
+        
+        const response = await request(app)
+        .post('/sessions')
+        .send({
+            email: user.email,
+            password: '123123'
+        })
+        
+        expect(response.status).toBe(200)
+    })
+    
+    it('should not authenticate with invalid credentials', async () => {
+        const user = await User.create({ 
+            name: 'Yitshhaq', 
+            email: 'ymotse@gmail.com', 
+            password: '123123' 
         })
         
         const response = await request(app)
@@ -24,8 +41,24 @@ describe('Authentication', () => {
                 email: user.email,
                 password: '123456'
             })
-        
-        expect(response.status).toBe(200)
+            
+        expect(response.status).toBe(401)
     })
     
+    it('should return JWT token when authenticated', async () => {
+        const user = await User.create({ 
+            name: 'Yitshhaq', 
+            email: 'ymotse@gmail.com', 
+            password: '123123' 
+        })
+        
+        const response = await request(app)
+            .post('/sessions')
+            .send({
+                email: user.email,
+                password: '123123'
+            })
+            
+        expect(response.body).toHaveProperty('token')
+    })
 })
